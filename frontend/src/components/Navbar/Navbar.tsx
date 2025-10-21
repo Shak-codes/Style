@@ -14,13 +14,11 @@ const Navbar = ({ data }: NavbarProps) => {
   return (
     <nav className={styles.navContainer}>
       <ul className={styles.routeContainer}>
-        {data.map(({ label, route }) => {
-          return (
-            <li key={route} className={styles.route}>
-              <Link href={route}>{label}</Link>
-            </li>
-          );
-        })}
+        {data.map(({ label, route }) => (
+          <Link key={route} href={route} className={styles.route}>
+            <li>{label}</li>
+          </Link>
+        ))}
       </ul>
     </nav>
   );
