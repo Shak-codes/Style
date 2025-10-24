@@ -6,10 +6,16 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --button-hover: #6e4091;
-    --background: #000a01;
-    --background-alt: #0a0a0a;
-    --background-alt2: #0e0e11;
+    --background: #020618;
+    --background-alt: #0a1225;
+    --background-alt2: #0a1024;
     --foreground: #ededed;
+    --hover: #05c71b;
+    --badge1: #007bff;
+    --badge2: #28a745;
+    --badge3: #dc3545;
+    --badge4: #ffc107;
+    --badge5: #17a2b8;
   }
 }
 
