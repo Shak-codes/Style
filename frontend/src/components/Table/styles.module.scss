@@ -1,0 +1,59 @@
+.tableWrapper {
+  height: 98%;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: var(--background);
+  border: 2px solid var(--background-alt);
+}
+
+.tableContainer {
+  width: 100%;
+  height: auto;
+  border-collapse: collapse;
+}
+
+.header {
+  text-align: left;
+  padding: 1rem;
+}
+
+.row {
+  padding: 0 1rem;
+  border-top: 2px solid var(--background-alt);
+  transition: 300ms all;
+
+  &:hover {
+    background-color: var(--background-alt2);
+    cursor: pointer;
+  }
+}
+
+.rowElement {
+  padding: 1.5rem 1rem;
+}
+
+.badgeContainer,
+.choiceContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badge {
+  border-radius: 0.25rem;
+  padding: 0.25rem 1.25rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.choice {
+  border-radius: 0.25rem;
+  border: 1px solid white;
+  padding: 0.25rem 1.25rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.text {
+  font-weight: 600;
+}
