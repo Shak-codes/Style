@@ -1,0 +1,70 @@
+.navContainer {
+  height: 98%;
+  width: 300px;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 2rem;
+}
+
+.routeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 90%;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.route {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  color: inherit;
+  background: var(--background);
+  text-decoration: none;
+  list-style: none;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+
+  &:hover {
+    font-weight: 600;
+    margin-left: 10px;
+  }
+
+  &:hover::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(
+      from var(--angle),
+      transparent 70%,
+      var(--hover)
+    );
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 2px;
+    border-radius: 0.5rem;
+    visibility: hidden;
+    visibility: visible;
+    animation: spin 3s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
