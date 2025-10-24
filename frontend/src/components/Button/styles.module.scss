@@ -1,0 +1,133 @@
+@use "@/styles/colors" as colors;
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: colors.$button-bg;
+  color: colors.$button-text;
+  font-family: "Lexend", "sans-serif";
+  font-weight: 400;
+  height: 3rem;
+  width: 100%;
+  border: 2px solid colors.$button-bg;
+  border-radius: 5px;
+  z-index: 1;
+  margin: 0;
+  transition: color 0.3s ease-in-out, border 0.3s ease-in-out,
+    background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+
+  .buttonContent {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: transform 0.5s ease;
+  }
+
+  &.loading .buttonContent,
+  &.success .buttonContent,
+  &.failure .buttonContent {
+    transform: translateX(-12px);
+  }
+
+  &.loading,
+  &.loadingFade,
+  &.success,
+  &.failure,
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:not(:disabled):hover,
+  &.selected {
+    border: 2px solid colors.$button-active-bg;
+    background-color: colors.$button-active-bg;
+    color: colors.$button-active-text;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.loadingIcon {
+  width: 20px;
+  height: 20px;
+  border: 3.5px solid transparent;
+  border-top: 3.5px solid colors.$highlight;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite, fade-in-out 0.5s ease-in-out;
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out;
+
+  &.fadeOut {
+    opacity: 0;
+  }
+}
+
+.checkmark {
+  position: relative;
+  font-size: 18px;
+  font-weight: bolder;
+  color: colors.$highlight;
+  animation: fade-in-out 0.7s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.cross {
+  position: relative;
+  font-size: 18px;
+  font-weight: bolder;
+  color: colors.$error;
+  animation: fade-in-out 0.7s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.button.loading .loadingIcon {
+  opacity: 1;
+  visibility: visible;
+}
+
+.button.success .checkmark {
+  opacity: 1;
+  visibility: visible;
+}
+
+.button.failure .cross {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.small {
+  height: 1.5rem;
+  font-size: smaller;
+  border-radius: 2px;
+}
