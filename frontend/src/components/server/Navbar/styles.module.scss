@@ -1,18 +1,22 @@
+.navContainer,
+.navContainer ul {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .navContainer {
-  height: 98%;
+  height: 100%;
   width: 300px;
-  align-self: stretch;
   display: flex;
-  justify-content: center;
-  align-items: start;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 .routeContainer {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: 90%;
+  width: 100%;
 }
 
 @property --angle {
@@ -34,28 +38,25 @@
   position: relative;
 
   &:hover {
-    font-weight: 600;
+    font-weight: bold;
     margin-left: 10px;
   }
 
   &:hover::after {
     content: "";
     position: absolute;
-    height: 100%;
-    width: 100%;
+    height: calc(100% + 2px);
+    width: calc(100% + 2px);
     background-image: conic-gradient(
       from var(--angle),
       transparent 70%,
-      var(--hover)
+      var(--accent)
     );
     top: 50%;
     left: 50%;
     translate: -50% -50%;
     z-index: -1;
-    padding: 2px;
     border-radius: 0.5rem;
-    visibility: hidden;
-    visibility: visible;
     animation: spin 3s linear infinite;
   }
 }
