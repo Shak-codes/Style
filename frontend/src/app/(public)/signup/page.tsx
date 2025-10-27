@@ -22,7 +22,10 @@ const Signup = () => {
     verify: "",
   });
 
-  const handleChange = (id: keyof Fields, value: string) => {
+  const handleChange = (
+    id: keyof Fields,
+    value: string | number | string[]
+  ) => {
     setFields((prev) => ({
       ...prev,
       [id]: value,
@@ -34,21 +37,25 @@ const Signup = () => {
       id: "username" as const,
       label: "Username",
       value: fields.username,
+      type: "text" as const,
     },
     {
       id: "email" as const,
       label: "Email",
       value: fields.email,
+      type: "text" as const,
     },
     {
       id: "password" as const,
       label: "Password",
       value: fields.password,
+      type: "password" as const,
     },
     {
       id: "verify" as const,
       label: "Verify Password",
       value: fields.verify,
+      type: "password" as const,
     },
   ];
 

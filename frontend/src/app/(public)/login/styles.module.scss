@@ -1,14 +1,13 @@
-$background: #204734;
-
 .container {
-  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 
 .loginContainer {
   width: 600px;
-  height: 800px;
-  border-radius: 0.5rem;
 }

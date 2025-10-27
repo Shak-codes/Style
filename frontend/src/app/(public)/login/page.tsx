@@ -18,7 +18,10 @@ const Login = () => {
     password: "",
   });
 
-  const handleChange = (id: keyof Fields, value: string) => {
+  const handleChange = (
+    id: keyof Fields,
+    value: string | number | string[]
+  ) => {
     setFields((prev) => ({
       ...prev,
       [id]: value,
@@ -30,11 +33,13 @@ const Login = () => {
       id: "email" as const,
       label: "Email",
       value: fields.email,
+      type: "text" as const,
     },
     {
       id: "password" as const,
       label: "Password",
       value: fields.password,
+      type: "password" as const,
     },
   ];
 
@@ -53,7 +58,6 @@ const Login = () => {
       return;
     }
 
-    // ✅ cookies are automatically set by middleware + Supabase
     router.push("/dashboard");
   };
 
@@ -64,7 +68,7 @@ const Login = () => {
           title="Login"
           onChange={handleChange}
           fields={inputFields}
-          onSubmit={handleLogin} // 👈 make sure form triggers login
+          onSubmit={handleLogin}
         />
         <p>
           Don&apos;t have an account? <Link href="/signup">Signup here.</Link>
