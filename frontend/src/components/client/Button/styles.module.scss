@@ -3,11 +3,11 @@
   justify-content: center;
   align-items: center;
   background-color: var(--background);
-  color: #fff;
+  color: var(--accent);
   font-weight: bold;
   height: 3rem;
   width: 100%;
-  border: 2px solid var(--accent-dark);
+  border: 2px solid var(--background);
   border-radius: 5px;
   z-index: 1;
   margin: 0;
