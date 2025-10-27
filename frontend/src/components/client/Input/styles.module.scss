@@ -1,44 +1,47 @@
-$input-background: #e0dede;
-$label-background: #0a0a0a;
-$unfocused: #2a6b4a;
-$focused: #42a570;
-
 .inputContainer {
   width: 100%;
-  margin-bottom: 3%;
 }
 
 .roundedInput {
+  box-sizing: border-box;
   width: 100%;
-  padding: 8px;
-  border: 2px solid $unfocused;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: $label-background;
-  transition: border-color 0.3s ease-in-out;
+  padding: 0.5rem;
+  border: 2px solid var(--accent-dark);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  background-color: var(--background-alt);
+  transition: all 0.3s ease-in-out;
   outline: none;
 
   &.active,
   &:focus {
-    border-color: $focused;
+    background-color: var(--background);
+  }
+
+  &:focus {
+    border-color: var(--accent);
   }
 }
 
 .inputLabel {
   position: relative;
   top: -1.65rem;
-  left: 7px;
+  left: 0.5rem;
   padding: 0 0.5%;
-  font-size: 16px;
-  color: $unfocused;
+  font-size: 1rem;
+  color: var(--accent-dark);
   pointer-events: none;
   transition: all 0.3s ease;
-  background-color: $label-background;
+  background-color: var(--background-alt);
 
   &.active,
   .roundedInput:focus + & {
     top: -2.9rem;
     font-size: 12px;
-    color: $focused;
+    background-color: var(--background);
+  }
+
+  .roundedInput:focus + & {
+    color: var(--accent);
   }
 }
