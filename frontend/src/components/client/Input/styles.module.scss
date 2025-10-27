@@ -13,11 +13,6 @@
   transition: all 0.3s ease-in-out;
   outline: none;
 
-  &.active,
-  &:focus {
-    background-color: var(--background);
-  }
-
   &:focus {
     border-color: var(--accent);
   }
@@ -38,7 +33,6 @@
   .roundedInput:focus + & {
     top: -2.9rem;
     font-size: 12px;
-    background-color: var(--background);
   }
 
   .roundedInput:focus + & {
