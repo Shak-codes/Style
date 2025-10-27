@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 
 type Column = {
   header: string;
-  type: "badge" | "list" | "text" | "choice";
+  type: "badge" | "list" | "text" | "choice" | "status" | "date" | "bool";
 };
 
 type TableProps<T> = {
@@ -37,6 +37,46 @@ const Table = <T extends any[]>({ columns, data, rowKey }: TableProps<T>) => {
     </div>
   );
 
+  const renderStatus = (status: string) => {
+    let color = "#28a745";
+    switch (status) {
+      case "Upcoming":
+        color = "#007bff";
+        break;
+      case "No-show":
+        color = "#dc3545";
+        break;
+      case "Cancelled":
+        color = "#ffc107";
+        break;
+    }
+
+    return (
+      <div className={styles.statusContainer}>
+        <div
+          className={styles.status}
+          style={{ backgroundColor: color, border: `1px solid ${color}` }}
+        >
+          <p className={styles.text}>{status}</p>
+        </div>
+      </div>
+    );
+  };
+
+  const renderDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const formatted = date.toLocaleString("en-US", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "2-digit",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    return <p className={styles.text}>{formatted}</p>;
+  };
+
   const renderText = (text: string) => (
     <div className={styles.badgeContainer}>
       <p className={styles.text}>{text}</p>
@@ -51,6 +91,10 @@ const Table = <T extends any[]>({ columns, data, rowKey }: TableProps<T>) => {
         </li>
       ))}
     </ul>
+  );
+
+  const renderBool = (flag: boolean) => (
+    <p className={styles.text}>{flag ? "True" : "False"}</p>
   );
 
   return (
@@ -79,24 +123,45 @@ const Table = <T extends any[]>({ columns, data, rowKey }: TableProps<T>) => {
                 switch (col.type) {
                   case "badge":
                     return (
-                      <td key={cIdx} className={styles.row}>
+                      <td key={cIdx} className={styles.rowElement}>
                         {renderBadges(cellData)}
                       </td>
                     );
 
                   case "choice":
                     return (
-                      <td key={cIdx} className={styles.row}>
+                      <td key={cIdx} className={styles.rowElement}>
                         {renderChoices(cellData)}
+                      </td>
+                    );
+
+                  case "status":
+                    return (
+                      <td key={cIdx} className={styles.rowElement}>
+                        {renderStatus(cellData)}
                       </td>
                     );
 
                   case "list":
                     return (
-                      <td key={cIdx}>
+                      <td key={cIdx} className={styles.rowElement}>
                         {Array.isArray(cellData)
                           ? renderList(cellData)
                           : renderText(String(cellData))}
+                      </td>
+                    );
+
+                  case "bool":
+                    return (
+                      <td key={cIdx} className={styles.rowElement}>
+                        {renderBool(cellData)}
+                      </td>
+                    );
+
+                  case "date":
+                    return (
+                      <td key={cIdx} className={styles.rowElement}>
+                        {renderDate(cellData)}
                       </td>
                     );
 

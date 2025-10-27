@@ -1,9 +1,10 @@
 .tableWrapper {
-  height: 98%;
+  height: 100%;
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   background-color: var(--background);
-  border: 2px solid var(--background-alt);
+  border: 1px solid var(--unfocused);
+  box-sizing: border-box;
 }
 
 .tableContainer {
@@ -29,21 +30,24 @@
 }
 
 .rowElement {
-  padding: 1.5rem 1rem;
+  padding: 1rem;
 }
 
 .badgeContainer,
-.choiceContainer {
+.choiceContainer,
+.statusContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.badge {
+.badge,
+.status {
   border-radius: 0.25rem;
-  padding: 0.25rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   font-weight: bold;
   font-size: 0.9rem;
+  align-self: center;
 }
 
 .choice {
