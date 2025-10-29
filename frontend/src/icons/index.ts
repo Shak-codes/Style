@@ -6,3 +6,4 @@ export { default as Hair } from "./Hair";
 export { default as Search } from "./Search";
 export { default as Settings } from "./Settings";
 export { default as User } from "./User";
+export { default as ArrowRight } from "./ArrowRight";
