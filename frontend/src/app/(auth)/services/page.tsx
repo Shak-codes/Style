@@ -1,6 +1,7 @@
 import Table from "@/components/server/Table/Table";
 import { SERVICES } from "../tableData";
 import styles from "./styles.module.scss";
+import { NavButton } from "@/components/server";
 
 const columns = [
   { header: "Name", type: "text" },
@@ -19,6 +20,9 @@ const Services = () => {
     <section className={styles.container}>
       <h1>Your Services</h1>
       <p>Create, modify, and keep track of your current services.</p>
+      <section className={styles.tableHeader}>
+        <NavButton href="/services/new" text="Add Service" />
+      </section>
       <Table columns={columns} data={serviceData} />
     </section>
   );
