@@ -38,14 +38,14 @@ export interface AppointmentProduct {
 }
 
 export interface RescheduleHistory {
-  type: "reschedule";
+  type: "Rescheduled";
   from: string;
   to: string;
   by: string;
 }
 
 export interface CancelledHistory {
-  type: "cancelled";
+  type: "Cancelled";
   at: string;
   by: string;
 }
@@ -53,23 +53,23 @@ export interface CancelledHistory {
 export type AppointmentHistoryEntry = RescheduleHistory | CancelledHistory;
 
 export interface AppointmentServiceRef {
-  id: number;
-  cost?: number;
+  name: string;
+  cost: number;
 }
 
 export type AppointmentStatus =
-  | "completed"
-  | "cancelled"
-  | "upcoming"
-  | "no-show";
+  | "Completed"
+  | "Cancelled"
+  | "Upcoming"
+  | "No-show";
 
 export interface Appointment {
   id: number;
-  client: number;
+  client: string;
   service: AppointmentServiceRef;
   status: AppointmentStatus;
   start: string;
-  length_min: number;
+  length: number;
   ends_at: string;
   isPrebook: boolean;
   history: AppointmentHistoryEntry[];

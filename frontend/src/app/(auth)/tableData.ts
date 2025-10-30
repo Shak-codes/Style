@@ -3,7 +3,7 @@ import { Appointment, Categories, Clients, Services } from "./types";
 export const CLIENTS: Clients = [
   {
     id: 1,
-    name: "Shakir Rahman",
+    name: "Shakir Rahmadingdong",
     notes: "Fluffy hair",
     hair_profile: [],
     visits: 5,
@@ -93,11 +93,11 @@ export const APPOINTMENTS: Appointment[] = [
   // --- Shakir (5 total) ---
   {
     id: 1,
-    client: 1,
-    service: { id: 1 }, // fixed cost
-    status: "completed",
+    client: "Shakir Rahman",
+    service: { name: "Men's cut and style", cost: 35 }, // fixed cost
+    status: "Completed",
     start: "2025-06-15T14:00:00-04:00",
-    length_min: 45,
+    length: 45,
     ends_at: "2025-06-15T14:45:00-04:00",
     isPrebook: false,
     history: [],
@@ -105,11 +105,11 @@ export const APPOINTMENTS: Appointment[] = [
   },
   {
     id: 5,
-    client: 1,
-    service: { id: 3, cost: 85 }, // variable cost (custom)
-    status: "completed",
+    client: "Shakir Rahman",
+    service: { name: "Beard Trim", cost: 15 }, // variable cost (custom)
+    status: "Completed",
     start: "2025-08-10T16:30:00-04:00",
-    length_min: 15,
+    length: 15,
     ends_at: "2025-08-10T16:45:00-04:00",
     isPrebook: false,
     history: [],
@@ -117,22 +117,22 @@ export const APPOINTMENTS: Appointment[] = [
   },
   {
     id: 6,
-    client: 1,
-    service: { id: 1 }, // fixed cost
-    status: "cancelled",
+    client: "Shakir Rahman",
+    service: { name: "Men's cut and style", cost: 35 }, // fixed cost
+    status: "Cancelled",
     start: "2025-09-05T13:00:00-04:00",
-    length_min: 45,
+    length: 45,
     ends_at: "2025-09-05T13:45:00-04:00",
     isPrebook: true,
     history: [
       {
-        type: "reschedule",
+        type: "Rescheduled",
         from: "2025-09-03T13:00:00-04:00",
         to: "2025-09-05T13:00:00-04:00",
         by: "client",
       },
       {
-        type: "cancelled",
+        type: "Cancelled",
         at: "2025-09-04T18:00:00-04:00",
         by: "client",
       },
@@ -141,16 +141,16 @@ export const APPOINTMENTS: Appointment[] = [
   },
   {
     id: 9,
-    client: 1,
-    service: { id: 1 },
-    status: "upcoming",
+    client: "Shakir Rahman",
+    service: { name: "Men's cut and style", cost: 35 },
+    status: "Upcoming",
     start: "2025-11-02T15:00:00-05:00",
-    length_min: 45,
+    length: 45,
     ends_at: "2025-11-02T15:45:00-05:00",
     isPrebook: true,
     history: [
       {
-        type: "reschedule",
+        type: "Rescheduled",
         from: "2025-10-30T15:00:00-04:00",
         to: "2025-11-02T15:00:00-05:00",
         by: "stylist",
@@ -160,11 +160,11 @@ export const APPOINTMENTS: Appointment[] = [
   },
   {
     id: 11,
-    client: 1,
-    service: { id: 3, cost: 90 }, // variable cost example
-    status: "no-show",
+    client: "Shakir Rahman",
+    service: { name: "Beard Trim", cost: 15 }, // variable cost example
+    status: "No-show",
     start: "2025-09-20T17:00:00-04:00",
-    length_min: 15,
+    length: 15,
     ends_at: "2025-09-20T17:15:00-04:00",
     isPrebook: false,
     history: [],
@@ -174,11 +174,11 @@ export const APPOINTMENTS: Appointment[] = [
   // --- Aiden (2 total) ---
   {
     id: 2,
-    client: 3,
-    service: { id: 1 },
-    status: "completed",
+    client: "Aiden Chen",
+    service: { name: "Men's cut and style", cost: 35 },
+    status: "Completed",
     start: "2025-08-01T09:30:00-04:00",
-    length_min: 45,
+    length: 45,
     ends_at: "2025-08-01T10:15:00-04:00",
     isPrebook: false,
     history: [],
@@ -186,16 +186,16 @@ export const APPOINTMENTS: Appointment[] = [
   },
   {
     id: 7,
-    client: 3,
-    service: { id: 3, cost: 80 },
-    status: "completed",
+    client: "Aiden Chen",
+    service: { name: "Beard Trim", cost: 15 },
+    status: "Completed",
     start: "2025-09-12T18:00:00-04:00",
-    length_min: 15,
+    length: 15,
     ends_at: "2025-09-12T18:15:00-04:00",
     isPrebook: true,
     history: [
       {
-        type: "reschedule",
+        type: "Rescheduled",
         from: "2025-09-10T18:00:00-04:00",
         to: "2025-09-12T18:00:00-04:00",
         by: "client",
@@ -207,11 +207,11 @@ export const APPOINTMENTS: Appointment[] = [
   // --- Maria (2 total) ---
   {
     id: 4,
-    client: 4,
-    service: { id: 4, cost: 120 },
-    status: "completed",
+    client: "Maria Santos",
+    service: { name: "Full Foils", cost: 120 },
+    status: "Completed",
     start: "2025-08-25T10:30:00-04:00",
-    length_min: 180,
+    length: 180,
     ends_at: "2025-08-25T13:30:00-04:00",
     isPrebook: true,
     history: [],
@@ -222,11 +222,11 @@ export const APPOINTMENTS: Appointment[] = [
   },
   {
     id: 8,
-    client: 4,
-    service: { id: 1 },
-    status: "no-show",
+    client: "Maria Santos",
+    service: { name: "Men's cut and style", cost: 15 },
+    status: "No-show",
     start: "2025-10-01T12:00:00-04:00",
-    length_min: 45,
+    length: 45,
     ends_at: "2025-10-01T12:45:00-04:00",
     isPrebook: false,
     history: [],
@@ -236,11 +236,11 @@ export const APPOINTMENTS: Appointment[] = [
   // --- Jasmine (2 total) ---
   {
     id: 3,
-    client: 2,
-    service: { id: 2 },
-    status: "completed",
+    client: "Jasmine Lam",
+    service: { name: "Base Color", cost: 120 },
+    status: "Completed",
     start: "2025-07-22T11:00:00-04:00",
-    length_min: 120,
+    length: 120,
     ends_at: "2025-07-22T13:00:00-04:00",
     isPrebook: false,
     history: [],
@@ -248,16 +248,16 @@ export const APPOINTMENTS: Appointment[] = [
   },
   {
     id: 10,
-    client: 2,
-    service: { id: 4, cost: 110 },
-    status: "upcoming",
+    client: "Jasmine Lam",
+    service: { name: "Full Foils", cost: 110 },
+    status: "Upcoming",
     start: "2025-12-05T10:00:00-05:00",
-    length_min: 180,
+    length: 180,
     ends_at: "2025-12-05T13:00:00-05:00",
     isPrebook: true,
     history: [
       {
-        type: "reschedule",
+        type: "Rescheduled",
         from: "2025-11-26T10:00:00-05:00",
         to: "2025-12-05T10:00:00-05:00",
         by: "stylist",
