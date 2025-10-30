@@ -1,83 +1,80 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./styles.module.scss";
+import { Filter as FilterIcon, ArrowRight } from "@/icons";
+import { FilterDetails } from "./types";
+import RenderFilters from "./utils";
 
-type Filter = {
-  property: string;
-  type: "text" | "range" | "sort";
-  placeholder: string;
-};
+type FilterProps = { filters: FilterDetails[] };
 
-type FilterProps = {
-  data?: any;
-  filters: Filter[];
-};
+const Filter = ({ filters }: FilterProps) => {
+  console.log("filters", filters);
+  const [open, setOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-const Filter = ({ data, filters }: FilterProps) => {
-  const [values, setValues] = useState<Record<string, string>>({});
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as Node | null;
+      if (ref.current && target && !ref.current.contains(target)) {
+        setOpen(false);
+        setSelectedIndex(null);
+      }
+    };
 
-  const handleChange = (property: string, newValue: string) => {
-    setValues((prev) => ({ ...prev, [property]: newValue }));
-  };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   return (
     <section className={styles.container}>
-      {filters.map(({ property, type, placeholder }) => {
-        const value = values[property] ?? "";
+      <section className={styles.filtersHeader}>
+        <FilterIcon width={32} height={32} className={styles.filterIcon} />
+        <h3>Filters</h3>
+      </section>
 
-        switch (type) {
-          case "text":
+      <section className={styles.parameterContainer}>
+        <button className={styles.addFilter} onClick={() => setOpen(!open)}>
+          Add +
+        </button>
+
+        {filters.map(({ operator, label, property, value }) => {
+          if (operator && value)
             return (
-              <div
-                key={property}
-                className={`${styles.filterRow} ${value ? styles.active : ""}`}
-              >
-                <label htmlFor={property} className={styles.label}>
-                  {placeholder}
-                </label>
-                <input
-                  id={property}
-                  type="text"
-                  className={styles.textFilter}
-                  value={value}
-                  onChange={(e) => handleChange(property, e.target.value)}
-                />
+              <div key={property} className={styles.filterDisplay}>
+                <span>{label} </span>
+                <span>{operator} </span>
+                <span>{String(value).toLowerCase()}</span>
               </div>
             );
+        })}
 
-          case "range":
-            return (
-              <div key={property} className={styles.filterRow}>
-                <label htmlFor={property}>{property}</label>
-                <input id={property} type="range" min={0} max={100} />
-              </div>
-            );
+        <section className={styles.filterContainer} ref={ref}>
+          {open && (
+            <section className={styles.parameterSelect}>
+              {filters.map(({ label, property }, idx) => {
+                return (
+                  <div
+                    key={property}
+                    role="option"
+                    className={`${styles.parameterOption} ${
+                      selectedIndex === idx ? styles.selected : ""
+                    }`}
+                    onClick={() => setSelectedIndex(idx)}
+                  >
+                    <p className={styles.parameter}>{label}</p>
+                    <ArrowRight width={24} height={24} />
+                  </div>
+                );
+              })}
+            </section>
+          )}
 
-          case "sort":
-            return (
-              <div
-                key={property}
-                className={`${styles.filterRow} ${value ? styles.active : ""}`}
-              >
-                <label htmlFor={property} className={styles.label}>
-                  {placeholder}
-                </label>
-                <select
-                  id={property}
-                  defaultValue=""
-                  className={styles.selectFilter}
-                >
-                  <option value="" disabled hidden></option>
-                  <option value="asc">Ascending</option>
-                  <option value="desc">Descending</option>
-                </select>
-              </div>
-            );
-
-          default:
-            return null;
-        }
-      })}
+          {selectedIndex !== null && filters[selectedIndex] && (
+            <RenderFilters {...filters[selectedIndex]} />
+          )}
+        </section>
+      </section>
     </section>
   );
 };
