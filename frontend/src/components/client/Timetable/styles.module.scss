@@ -1,0 +1,81 @@
+.timetableContainer {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1rem;
+  padding: 0.5rem;
+  overflow: visible;
+}
+
+.optionsContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button {
+  height: 20px;
+}
+
+.monthContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  overflow: visible;
+}
+
+.dayInMonth {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-top: 1px dotted #ddd;
+  border-bottom: 1px dotted #ddd;
+  background-color: var(--background);
+  padding: 6px;
+  z-index: 1;
+  transition: all 300ms;
+
+  &:hover {
+    scale: 1.05;
+    border: 1px solid var(--accent);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    z-index: 2;
+  }
+}
+
+.dwContainer {
+  display: grid;
+  overflow: auto;
+  height: 100%;
+}
+
+.timeContainer {
+  font-size: smaller;
+  text-align: left;
+}
+
+.slotContainer {
+  position: relative;
+}
+
+.slotContainer2 {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  pointer-events: none;
+}
+
+.slot {
+  border-top: 1px dotted gray;
+  border-bottom: 1px dotted gray;
+  border-left: 1px solid #fafafa;
+  border-right: 1px solid #fafafa;
+}
+
+.appointment {
+  position: absolute;
+  padding: 6;
+  background-color: var(--accent-dark);
+  cursor: grab;
+  font-size: small;
+}
