@@ -2,6 +2,8 @@ package com.style.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -26,6 +28,9 @@ public class Category {
     
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @ManyToMany(mappedBy = "categories")
+    private Set<Service> services = new HashSet<>();
     
     public Category() {}
     
@@ -51,6 +56,18 @@ public class Category {
     
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
+    public Set<Service> getServices() { return services; }
+
+    public void addService(Service service) {
+        this.services.add(service);
+        service.getCategories().add(this);
+    }
+    
+    public void removeService(Service service) {
+        this.services.remove(service);
+        service.getCategories().remove(this);
+    }
     
     @Override
     public String toString() {

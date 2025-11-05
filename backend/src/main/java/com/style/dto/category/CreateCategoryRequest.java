@@ -1,18 +1,19 @@
-package com.style.dto;
+package com.style.dto.category;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class UpdateCategoryRequest {
-    
+public class CreateCategoryRequest {
+    @NotBlank(message = "Category name is required")
     @Size(min = 1, max = 16, message = "Category name must be between 1 and 16 characters")
     private String name;
     
     @Size(max = 7, message = "Color must be a valid hex color code")
     private String color;
 
-    public UpdateCategoryRequest() {}
+    public CreateCategoryRequest() {}
 
-    public UpdateCategoryRequest(String name, String color) {
+    public CreateCategoryRequest(String name, String color) {
         this.name = name;
         this.color = color;
     }

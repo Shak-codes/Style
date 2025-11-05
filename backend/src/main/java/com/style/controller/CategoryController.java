@@ -1,12 +1,10 @@
 package com.style.controller;
 
-import com.style.dto.CreateCategoryRequest;
-import com.style.dto.UpdateCategoryRequest;
+import com.style.dto.category.UpdateCategoryRequest;
 import com.style.entity.Category;
 import com.style.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,16 +21,6 @@ public class CategoryController {
     public ResponseEntity<List<Category>> getCategories() {
         List<Category> categories = categoryService.getCategories();
         return ResponseEntity.ok(categories);
-    }
-
-    @PostMapping
-    public ResponseEntity<Category> createCategory(@Valid @RequestBody CreateCategoryRequest request) {
-        try {
-            Category createdCategory = categoryService.createCategory(request.getName(), request.getColor());
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
     }
 
     @PutMapping("/{id}")
