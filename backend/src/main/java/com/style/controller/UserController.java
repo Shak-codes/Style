@@ -8,7 +8,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
@@ -17,9 +16,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<User> getUser(@PathVariable @NonNull UUID userId) {
-        Optional<User> user = userService.getUserById(userId);
+    @GetMapping
+    public ResponseEntity<User> getCurrentUser() {
+        Optional<User> user = userService.getCurrentUser();
         return user.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
     }
