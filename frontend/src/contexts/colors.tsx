@@ -21,6 +21,26 @@ interface ColorsProviderProps {
 }
 
 export const ColorsProvider: React.FC<ColorsProviderProps> = ({ children }) => {
+  const background = [
+    ["oklch(25.8% 0.092 26.042)", "oklch(50.5% 0.213 27.518)"],
+    ["oklch(26.6% 0.079 36.259)", "oklch(55.3% 0.195 38.402)"],
+    ["oklch(27.9% 0.077 45.635)", "oklch(55.5% 0.163 48.998)"],
+    ["oklch(28.6% 0.066 53.813)", "oklch(55.4% 0.135 66.442)"],
+    ["oklch(27.4% 0.072 132.109)", "oklch(53.2% 0.157 131.589)"],
+    ["oklch(26.6% 0.065 152.934)", "oklch(52.7% 0.154 150.069)"],
+    ["oklch(26.2% 0.051 172.552)", "oklch(50.8% 0.118 165.612)"],
+    ["oklch(26.2% 0.051 172.552)", "oklch(51.1% 0.096 186.391)"],
+    ["oklch(27.7% 0.046 192.524)", "oklch(52% 0.105 223.128)"],
+    ["oklch(29.3% 0.066 243.157)", "oklch(50% 0.134 242.749)"],
+    ["oklch(28.2% 0.091 267.935)", "oklch(48.8% 0.243 264.376)"],
+    ["oklch(25.7% 0.09 281.288)", "oklch(45.7% 0.24 277.023)"],
+    ["oklch(28.3% 0.141 291.089)", "oklch(49.1% 0.27 292.581)"],
+    ["oklch(29.1% 0.149 302.717)", "oklch(49.6% 0.265 301.924)"],
+    ["oklch(29.3% 0.136 325.661)", "oklch(51.8% 0.253 323.949)"],
+    ["oklch(28.4% 0.109 3.907)", "oklch(52.5% 0.223 3.958)"],
+    ["oklch(27.1% 0.105 12.094)", "oklch(51.4% 0.222 16.935)"],
+  ];
+
   const colors = [
     "oklch(69.6% 0.17 162.48)",
     "oklch(63.7% 0.237 25.331)",
@@ -79,6 +99,8 @@ export const ColorsProvider: React.FC<ColorsProviderProps> = ({ children }) => {
   const focusedText = "oklch(97% 0.001 106.424)";
   const unfocusedText = "oklch(86.9% 0.005 56.366)";
 
+  const COLORS = 17;
+
   const [colorIndex, setColorIndexRaw] = useState<number>(() => {
     try {
       const raw =
@@ -97,12 +119,16 @@ export const ColorsProvider: React.FC<ColorsProviderProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    const safeIndex = Math.max(0, Math.min(colorIndex, colors.length - 1));
-    const accent = colors[safeIndex];
-    const accentDark = dark[safeIndex];
+    const colorIdx = Math.floor(Math.random() * COLORS);
+    console.log("color index:", colorIdx);
+    const accent = colors[colorIdx];
+    const accentDark = dark[colorIdx];
+    const bg = background[colorIdx];
 
     document.documentElement.style.setProperty("--accent", accent);
     document.documentElement.style.setProperty("--accent-dark", accentDark);
+    document.documentElement.style.setProperty("--background", bg[1]);
+    document.documentElement.style.setProperty("--background-dark", bg[0]);
     document.documentElement.style.setProperty(
       "--unfocused",
       "oklch(26.2% 0.051 172.552)"
