@@ -2,14 +2,15 @@
 .navContainer ul {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  list-style: none;
+  border-radius: 0.5rem;
 }
 
 .navContainer {
   height: 100%;
   width: 300px;
   display: flex;
-  padding-top: 1rem;
+  background-color: oklch(14.7% 0.004 49.25);
 }
 
 .routeContainer {
@@ -17,6 +18,17 @@
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
+}
+
+.navItemWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: oklch(14.7% 0.004 49.25);
+}
+
+.chevron {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 @property --angle {
@@ -27,8 +39,8 @@
 
 .route {
   display: block;
+  width: 100%;
   padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
   font-weight: 500;
   color: inherit;
   background: oklch(14.7% 0.004 49.25);
@@ -36,10 +48,23 @@
   list-style: none;
   transition: all 0.3s ease-in-out;
   position: relative;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
 
   &:hover {
     font-weight: bold;
-    margin-left: 10px;
+    z-index: 2;
+  }
+
+  &:hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: oklch(14.7% 0.004 49.25);
+    z-index: 0;
   }
 
   &:hover::after {
@@ -54,10 +79,50 @@
     );
     top: 50%;
     left: 50%;
-    translate: -50% -50%;
+    translate: -50.25% -50%;
     z-index: -1;
-    border-radius: 0.5rem;
     animation: spin 3s linear infinite;
+  }
+
+  &.active {
+    font-weight: bold;
+  }
+}
+
+.dropdownWrapper {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+  transition: max-height 0.3s ease-out;
+}
+
+.dropdownWrapper.dropdownOpen {
+  max-height: 200px;
+  margin-top: 0.25rem;
+}
+
+.dropdown {
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+
+  &:hover,
+  &.active {
+    background: oklch(20% 0.01 50deg);
   }
 }
 
@@ -73,4 +138,6 @@
 .navRow {
   display: flex;
   gap: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
